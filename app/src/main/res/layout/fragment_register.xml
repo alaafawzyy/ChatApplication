@@ -1,104 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/main_bg"
-    android:paddingHorizontal="16dp"
-    android:paddingTop="350dp"
-    tools:context=".ui.auth.fragments.login.LoginFragment">
-  <com.google.android.material.textfield.TextInputLayout
-    android:id="@+id/name"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-      android:hint="usename"
-      android:textColorHint="@color/darkgray"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintBottom_toTopOf="@id/ed_emil"
-      >
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</com.google.android.material.textfield.TextInputLayout>
+    >
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ed_emil"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:hint="@string/email"
-        android:textColorHint="@color/darkgray"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name">
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ed_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:hint="@string/password"
-        android:textColorHint="@color/darkgray"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_emil">
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </com.google.android.material.textfield.TextInputLayout>
+    <data>
+        <variable
+            name="vm"
+            type="com.example.chatapplication.ui.auth.fragments.register.RegisterViewModel" />
+        <import type="android.view.View"/>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/ed_password"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="100dp"
-        android:textColorHint="@color/darkgray"
-        app:cardCornerRadius="5dp"
-        android:elevation="5dp"
-       android:background="@drawable/backgrount_button_login_shape"
-        android:backgroundTint="@color/transparent"
-        >
-        <TextView
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/main_bg"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="350dp"
+        tools:context=".ui.auth.fragments.login.LoginFragment">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="create Account"
-            android:padding="25dp"
-            android:textColor="#B1ADAD"
-            android:textStyle="bold"
-            android:textSize="16dp"
+            android:hint="usename"
+            android:textColorHint="@color/darkgray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/ed_emil"
+            app:error="@{vm.userErorr}">
 
-            />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@={vm.userNameLiveData}"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="70dp"
-            android:layout_gravity="end"
-            android:backgroundTint="#B1ADAD"
-            android:padding="25dp"
-            android:scaleType="center"
-            android:src="@drawable/baseline_arrow_forward_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ed_emil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/email"
+            android:textColorHint="@color/darkgray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            app:error="@{vm.emailErorr}">
 
-        <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_arrow_right"
-            android:indeterminate="true"
-            android:scaleType="center"
-            android:visibility="gone"
-            android:backgroundTint="@color/white"
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@={vm.emailLiveData}"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ed_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/password"
+            android:textColorHint="@color/darkgray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ed_emil"
+            app:error="@{vm.passwordErorr}">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@={vm.passwordLiveData}"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ed_conf_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Password Confirmation"
+            android:textColorHint="@color/darkgray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ed_password"
+            app:error="@{vm.passwordConfirmErorr}">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@={vm.passwordConfirmLiveData}"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/ed_conf_password"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+            android:onClick="@{()->vm.register()}"
+            android:layout_marginTop="100dp"
+            android:textColorHint="@color/darkgray"
+            app:cardCornerRadius="5dp"
+            android:elevation="5dp"
+            android:background="@drawable/backgrount_button_login_shape"
+            android:backgroundTint="@color/lightblue">
 
-    </androidx.cardview.widget.CardView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="create Account"
+                android:padding="25dp"
+                android:textColor="#B1ADAD"
+                android:textStyle="bold"
+                android:textSize="16dp"
+
+                />
+
+            <ImageView
+                android:id="@+id/arrow"
+                android:layout_width="120dp"
+                android:layout_height="70dp"
+                android:layout_gravity="end"
+                android:backgroundTint="#B1ADAD"
+                android:visibility="@{vm.isRegister==true ?View.GONE :View.VISIBLE }"
+                android:padding="25dp"
+                android:scaleType="center"
+                android:src="@drawable/baseline_arrow_forward_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progress"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_arrow_right"
+                android:indeterminate="true"
+                android:scaleType="center"
+                android:visibility="@{vm.isRegister == true? View.VISIBLE :View.GONE}"
+                android:backgroundTint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_gravity="end"
+               android:layout_margin="10dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.cardview.widget.CardView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

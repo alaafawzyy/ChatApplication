@@ -1,4 +1,4 @@
-package com.example.chatapplication.ui.auth.activity
+package com.example.chatapplication.ui.home.activity
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -8,16 +8,14 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.chatapplication.R
 import com.example.chatapplication.databinding.ActivityAuthBinding
 
-class AuthActivity : AppCompatActivity() {
+class HomeActivty : AppCompatActivity() {
     private lateinit var binding: ActivityAuthBinding
      lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         binding=ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         initNavComponent()
     }
 

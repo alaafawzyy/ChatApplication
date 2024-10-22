@@ -1,4 +1,4 @@
-package com.example.chatapplication.chat.createroom
+package com.example.chatapplication.ui.chat.createroom
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

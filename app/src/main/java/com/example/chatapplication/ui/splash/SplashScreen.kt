@@ -6,7 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.chatapplication.ui.auth.activity.AuthActivity
+import com.example.chatapplication.ui.home.activity.HomeActivty
 import com.example.chatapplication.R
 
 class SplashScreen : AppCompatActivity() {
@@ -15,7 +15,7 @@ class SplashScreen : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_splash_screen)
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent=Intent(this, AuthActivity::class.java)
+            val intent=Intent(this, HomeActivty::class.java)
             startActivity(intent)
             finish()
         },2500)

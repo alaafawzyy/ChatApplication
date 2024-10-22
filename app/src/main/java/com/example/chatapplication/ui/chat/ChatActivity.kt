@@ -1,4 +1,4 @@
-package com.example.chatapplication.chat
+package com.example.chatapplication.ui.chat
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.chatapplication.R
-import com.example.chatapplication.chat.createroom.CreateRoomActivity
+import com.example.chatapplication.ui.chat.createroom.CreateRoomActivity
 import com.example.chatapplication.databinding.ActivityChatBinding
 
 class ChatActivity : AppCompatActivity() {
@@ -21,7 +21,7 @@ class ChatActivity : AppCompatActivity() {
     }
 
     private fun NavigateToCreateRoomActivity() {
-        startActivity(Intent(this,CreateRoomActivity::class.java))
+        startActivity(Intent(this, CreateRoomActivity::class.java))
         finish()
     }
 }

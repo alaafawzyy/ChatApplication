@@ -2,43 +2,62 @@ package com.example.chatapplication.ui.auth.fragments.login
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
-import com.example.chatapplication.ui.auth.activity.AuthActivity
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.chatapplication.ui.home.activity.HomeActivty
 import com.example.chatapplication.R
+import com.example.chatapplication.base.baseFragment
+import com.example.chatapplication.database.User
 import com.example.chatapplication.databinding.FragmentLoginBinding
-import com.example.chatapplication.ui.home.HomeActivity
+import com.example.chatapplication.ui.home.HomeFragment
 
 
-class LoginFragment : Fragment() {
-lateinit var binding: FragmentLoginBinding
+class LoginFragment : baseFragment<FragmentLoginBinding,LoginViewModel>(){
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-       binding=FragmentLoginBinding.inflate(inflater)
-        return binding.root
+    override fun initViewModel(): LoginViewModel {
+         return ViewModelProvider(this)[LoginViewModel::class.java]
+    }
+
+    override fun getLatoutId(): Int {
+        return R.layout.fragment_login
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.navigateToRegisterBtn.setOnClickListener({NavigateToRegister()})
-        binding.loginBtn.setOnClickListener({NavigateToHome()})
+        initViews()
+
+        observeLiveDataa()
+       // binding.navigateToRegisterBtn.setOnClickListener({NavigateToRegister()})
     }
 
-    private fun NavigateToHome() {
-        if(activity==null)return
-          startActivity(Intent(requireContext(),HomeActivity::class.java))
-        requireActivity().finish()
+       fun observeLiveDataa() {
+        viewModel.events.observe(viewLifecycleOwner){
+            when(it){
+                is LoginViewEvent.NavigateToRegister ->{
+                    NavigateToRegister()
+                }
+                is LoginViewEvent.NavigateToHomme ->{
+                    NavigateToHome(it.user)
+                }
+            }
+        }
+    }
+
+    private fun initViews() {
+        binding.vm= viewModel
+        binding.lifecycleOwner=this
+    }
+
+    private fun NavigateToHome(user: User) {
+        val action=LoginFragmentDirections.actionLoginFragmentToHomeFragment2(user)
+        findNavController().navigate(action)
     }
 
     private fun NavigateToRegister() {
-       if(activity==null)return
-        (activity as AuthActivity).navController
-            .navigate(R.id.action_loginFragment_to_registerFragment)
+
+       findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
     }
 
 }

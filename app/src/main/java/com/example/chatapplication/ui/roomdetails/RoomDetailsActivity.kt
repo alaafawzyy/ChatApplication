@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.chatapplication.R
-import com.example.chatapplication.chat.ChatActivity
+import com.example.chatapplication.ui.chat.ChatActivity
 import com.example.chatapplication.databinding.ActivityRoomDetailsBinding
 
 class RoomDetailsActivity : AppCompatActivity() {
@@ -21,7 +21,7 @@ class RoomDetailsActivity : AppCompatActivity() {
 
 
     private fun NavigateToChatActivity() {
-       startActivity(Intent(this,ChatActivity::class.java))
+       startActivity(Intent(this, ChatActivity::class.java))
         finish()
     }
 }

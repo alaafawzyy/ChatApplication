@@ -1,116 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/main_bg"
-    android:paddingHorizontal="16dp"
-    android:paddingTop="350dp"
-    tools:context=".ui.auth.fragments.login.LoginFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+         <variable
+             name="vm"
+             type="com.example.chatapplication.ui.auth.fragments.login.LoginViewModel" />
+    </data>
 
-    <TextView
-        android:id="@+id/title_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/wellcome_back"
-        android:textStyle="bold"
-        android:textSize="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ed_emil"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:hint="@string/email"
-        android:textColorHint="@color/darkgray"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_tv">
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ed_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textColorHint="@color/darkgray"
-        android:hint="@string/password"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_emil">
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </com.google.android.material.textfield.TextInputLayout>
-    <TextView
-        android:id="@+id/forgot_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/forgot_password"
-        android:layout_marginTop="12dp"
-        android:textColor="@color/darkgray"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_password"/>
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/login_btn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/forgot_password"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/lightblue"
-        android:paddingHorizontal="32dp"
-        android:background="@drawable/backgrount_button_login_shape"
-        >
+        android:layout_height="match_parent"
+        android:background="@drawable/main_bg"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="350dp"
+        tools:context=".ui.auth.fragments.login.LoginFragment">
+
+
         <TextView
+            android:id="@+id/title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/login"
-            android:textColor="@color/white"
-            android:textSize="16dp"
+            android:text="@string/wellcome_back"
+            android:textStyle="bold"
+            android:textSize="24dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            />
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_arrow_right"
-            android:scaleType="center"
-            android:backgroundTint="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
-        <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_arrow_right"
-            android:indeterminate="true"
-            android:scaleType="center"
-            android:visibility="gone"
-            android:backgroundTint="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ed_emil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            app:error="@{vm.emailErorr}"
+            android:textColorHint="@color/darkgray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_tv">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@={vm.emailLiveData}"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ed_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColorHint="@color/darkgray"
+            android:hint="@string/password"
+            app:error="@{vm.passwordErorr}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ed_emil">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@={vm.passwordLiveData}"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/forgot_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/forgot_password"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/darkgray"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ed_password" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/forgot_password"
+            android:layout_marginTop="16dp"
+            android:onClick="@{()->vm.register()}"
+            android:backgroundTint="@color/lightblue"
+            android:paddingHorizontal="32dp"
+            android:background="@drawable/backgrount_button_login_shape">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+
+                />
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_arrow_right"
+                android:scaleType="center"
+                android:backgroundTint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_arrow_right"
+                android:indeterminate="true"
+                android:scaleType="center"
+                android:visibility="gone"
+                android:backgroundTint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/navigate_to_register_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/or_create_new_account"
+            android:onClick="@{()->vm.onGoToRegisterClick()}"
+            android:textColor="@color/darkgray"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_btn"
+            android:layout_marginTop="32dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <TextView
-        android:id="@+id/navigate_to_register_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/or_create_new_account"
-        android:textColor="@color/darkgray"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_btn"
-        android:layout_marginTop="32dp"
-        />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

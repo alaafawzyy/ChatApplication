@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
 
     <application
         android:allowBackup="true"
@@ -13,16 +17,16 @@
         android:theme="@style/Theme.ChatApplication"
         tools:targetApi="31">
         <activity
-            android:name=".chat.createroom.CreateRoomActivity"
+            android:name=".ui.chat.createroom.CreateRoomActivity"
             android:exported="false" />
         <activity
-            android:name=".chat.ChatActivity"
+            android:name=".ui.chat.ChatActivity"
             android:exported="false" />
         <activity
             android:name=".ui.roomdetails.RoomDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.home.HomeActivity"
+            android:name=".ui.home.HomeFragment"
             android:exported="false" />
         <activity
             android:name=".ui.splash.SplashScreen"
@@ -34,8 +38,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.auth.activity.AuthActivity"
+            android:name=".ui.home.activity.HomeActivty"
             android:exported="false" />
+
+        ... >
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <!-- For Firebase or other Google Services -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="YOUR_API_KEY" />
     </application>
 
 </manifest>

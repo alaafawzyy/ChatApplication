@@ -1,6 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.gms.google-services")
+    id("kotlin-kapt")
+    id("kotlin-parcelize")
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -35,6 +39,7 @@ android {
     }
     buildFeatures{
         viewBinding=true
+        dataBinding=true
     }
 }
 
@@ -52,9 +57,18 @@ dependencies {
     implementation ("androidx.navigation:navigation-ui:$nav_version")
     implementation ("com.google.android.material:material:1.9.0")
 
-
+    //fire base
+    implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+    // ViewModel
+    val lifecycle_version = "2.8.6"
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
     // Feature module support for Fragments
     implementation ("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
+
+    implementation ("com.google.android.material:material:version")
 
     // Testing Navigation
     androidTestImplementation ("androidx.navigation:navigation-testing:$nav_version")
